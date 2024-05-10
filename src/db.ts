@@ -57,6 +57,8 @@ const railDB = mysql.createConnection({
 
 
 
+
+
 railDB.connect((erro) => {
     if(erro){
         console.log("Erro Connection Railway DB", erro)
