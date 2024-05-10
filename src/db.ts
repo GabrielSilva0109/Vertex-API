@@ -34,25 +34,26 @@ const awsDB = mysql.createConnection({
     database: "vertex"
 })
 
-awsDB.connect((erro) => {
-    if(erro){
-        console.log("Erro Connection AWS DB", erro)
-        return
-    } 
-    console.log("AWS DB Connection Successfull!")
-})
+// awsDB.connect((erro) => {
+//     if(erro){
+//         console.log("Erro Connection AWS DB", erro)
+//         return
+//     } 
+//     console.log("AWS DB Connection Successfull!")
+// })
 
 //RAILWAY
-const hostRailway = process.env.railwayHOST
-const userRailway = process.env.railwayUSER
-const passwordRailway = process.env.railwayPASSWORD
+const hostRailway = 'viaduct.proxy.rlwy.net'
+const userRailway =   'root'
+const passwordRailway = 'AEuIMGUHdBaAPCerKtRMVCAtWMtctFce'
 
 const railDB = mysql.createConnection({
     host: hostRailway,
     user: userRailway,
     password: passwordRailway,
     database: "vertex",
-    port: 59003 
+    port: 59003,
+    insecureAuth: true
 })
 
 railDB.connect((erro) => {
