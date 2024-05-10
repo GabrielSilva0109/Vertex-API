@@ -54,7 +54,6 @@ const railDB = mysql.createConnection({
     database: "vertex",
     port: 59003 
 })
-sad
 
 railDB.connect((erro) => {
     if(erro){
