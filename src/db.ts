@@ -55,6 +55,8 @@ const railDB = mysql.createConnection({
     port: 59003 
 })
 
+
+
 railDB.connect((erro) => {
     if(erro){
         console.log("Erro Connection Railway DB", erro)
