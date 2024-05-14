@@ -23,4 +23,4 @@ router.put('/user/:id', updateUser)
 router.delete('/user/:id', deleteUser)
 router.post('/login', loginUser)
 
-export default router;
+export default router

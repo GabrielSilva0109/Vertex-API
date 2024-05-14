@@ -3,10 +3,6 @@ import cors from 'cors'
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
 import userRoutes from './routes/UserRoutes'
-import walletRoutes from './routes/WalletRoutes'
-import ativoRoutes from './routes/AtivoRoutes'
-import despesaRoutes from './routes/DespesaRoutes'
-import investimentoRoutes from './routes/InvestimentoRoutes'
 
 dotenv.config()
 
