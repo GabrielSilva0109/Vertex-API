@@ -3,9 +3,7 @@
     "builds": [
       { "src": "src/index.ts", "use": "@vercel/node" }
     ],
-    "routes": [],
-    "output": {
-      "public": "/"
-    }
+    "routes": []
+    
   }
   
