@@ -35,7 +35,8 @@
     "passport-google-oauth20": "^2.0.0",
     "serverless": "^3.38.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vercel": "^34.1.14"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
