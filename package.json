@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts",
-    "build": "echo \"No need to build, using ts-node directly.\""
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
