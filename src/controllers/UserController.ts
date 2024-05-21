@@ -22,7 +22,7 @@ export const getUsers = (req: Request, res: Response) => {
 export const getUserById = (req: Request, res:Response) => {
     const q = "SELECT * FROM users WHERE `id`=?;"
 
-    awsDB.query(q, [req.params.id], (erro, data) =>{
+    awsDB.query(q, [req.params.id], (erro, data) => {
         if(erro) return res.status(500).json({erro: 'Erro get User for ID'})
         return res.status(200).json(data[0])
     })
