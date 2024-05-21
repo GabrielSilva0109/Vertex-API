@@ -55,7 +55,6 @@ export const createUser = (req: Request, res: Response) => {
             if (walletError) {
                 return res.status(500).json({ error: 'Erro of create Wallet for User' })
             }
-
             return res.status(201).json('User and Wallet Created!!')
         })
     })
@@ -63,8 +62,8 @@ export const createUser = (req: Request, res: Response) => {
 
 //Update data of User
 export const updateUser = (req: Request, res: Response) => {
-    const userId = req.params.id;
-    const { name, password, email, birth, cpf, cep, picture } = req.body;
+    const userId = req.params.id
+    const { name, password, email, birth, cpf, cep, picture } = req.body
 
     if (!name && !password && !email && !birth && !cpf && !cep && !picture) {
         return res.status(400).json({ error: 'Nenhum dado de atualização fornecido' });

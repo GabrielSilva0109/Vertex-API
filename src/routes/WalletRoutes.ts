@@ -25,6 +25,6 @@ router.get('/acoesBrasileiras', async (req, res) => {
       console.error('Erro ao buscar dados das ações brasileiras:');
       res.status(500).json({ error: 'Erro ao buscar dados das ações brasileiras' });
     }
-  })
+})
 
 export default router
