@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { localDB, awsDB } from '../db'
+import { localDB } from '../db'
 import { error } from 'console'
 import bcrypt from 'bcrypt'
 
@@ -12,7 +12,7 @@ const generateRandomNumber = () => {
 export const getUsers = (req: Request, res: Response) => {
     const q = "SELECT * FROM users;"
 
-    awsDB.query(q, (error, data) => {
+    localDB.query(q, (error, data) => {
         if (error) return res.status(500).json({ error: 'Erro in server AWS' })
         return res.status(200).json(data)
     })
@@ -22,7 +22,7 @@ export const getUsers = (req: Request, res: Response) => {
 export const getUserById = (req: Request, res:Response) => {
     const q = "SELECT * FROM users WHERE `id`=?;"
 
-    awsDB.query(q, [req.params.id], (erro, data) => {
+    localDB.query(q, [req.params.id], (erro, data) => {
         if(erro) return res.status(500).json({erro: 'Erro get User for ID'})
         return res.status(200).json(data[0])
     })
@@ -40,7 +40,7 @@ export const createUser = (req: Request, res: Response) => {
     const hashedPassword = bcrypt.hashSync(password, 10)
 
     const q = "INSERT INTO users (`name`, `password`,`email`,`birth`, `cpf`, `cep`) VALUES (?,?,?,?,?,?);"
-    awsDB.query(q, [name, hashedPassword, email, birth, cpf, cep], (erro, data) => {
+    localDB.query(q, [name, hashedPassword, email, birth, cpf, cep], (erro, data) => {
         if (erro) return res.status(500).json({ erro: 'Erro of Create a new USER' })
 
         // Recupera o ID do usuário recém-criado
@@ -51,7 +51,7 @@ export const createUser = (req: Request, res: Response) => {
 
         // Cria uma wallet para o novo usuário
         const walletQuery = "INSERT INTO wallets (`user_id`, `conta`, `saldo`) VALUES (?,?,?);"
-        awsDB.query(walletQuery, [userId, contaNumber, 0.00], async (walletError, walletData) => {
+        localDB.query(walletQuery, [userId, contaNumber, 0.00], async (walletError, walletData) => {
             if (walletError) {
                 return res.status(500).json({ error: 'Erro of create Wallet for User' })
             }
@@ -88,7 +88,7 @@ export const updateUser = (req: Request, res: Response) => {
     const q = `UPDATE users SET ${placeholders} WHERE id=?`
     const values = [...fieldsToUpdate.map((field) => updatedFields[field]), userId]
 
-    awsDB.query(q, values, (erro, data) => {
+    localDB.query(q, values, (erro, data) => {
         if (erro) return res.status(500).json({ erro: 'Erro of Update USER' })
 
         return res.status(200).json('USER Updated!!')
@@ -100,7 +100,7 @@ export const deleteUser = (req: Request, res: Response) => {
     const userId = req.params.id
 
     const q = "DELETE FROM users WHERE `id`=?"
-    awsDB.query(q, [userId], (erro, data) => {
+    localDB.query(q, [userId], (erro, data) => {
         if (erro) return res.status(500).json({ erro: 'Erro of DELETE User' })
         return res.status(200).json('User Deleted!!')
     })
@@ -112,7 +112,7 @@ export const loginUser = async (req: Request, res: Response) => {
         const { cpf, password } = req.body
         const q = "SELECT * FROM users WHERE cpf=?"
         const result: any[] = await new Promise((resolve, reject) => {
-            awsDB.query(q, [cpf], (error, result) => {
+            localDB.query(q, [cpf], (error, result) => {
                 if (error) {
                     console.error('Erro of get User:', error)
                     reject(error)

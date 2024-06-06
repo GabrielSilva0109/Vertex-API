@@ -13,33 +13,33 @@ const localDB = mysql.createConnection({
     database: "vertex"
 })
 
-// localDB.connect((erro) => {
-//     if(erro){
-//         console.log("Erro Connection MySQL", erro)
-//         return
-//     }
-//     console.log("MySQL Connection Successfull!!")
+localDB.connect((erro) => {
+    if(erro){
+        console.log("Erro Connection MySQL", erro)
+        return
+    }
+    console.log("Database Connection Successfull!!")
+})
+
+// //AWS
+// const hostAWS = process.env.awsHOST
+// const userAWS = process.env.awsUSER
+// const passwordAWS = process.env.awsPASSWORD
+
+// //Conection with AWS Database SERVER
+// const awsDB = mysql.createConnection({
+//     host: hostAWS,
+//     user: userAWS,
+//     password: passwordAWS,
+//     database: "vertex"
 // })
 
-//AWS
-const hostAWS = process.env.awsHOST
-const userAWS = process.env.awsUSER
-const passwordAWS = process.env.awsPASSWORD
+// awsDB.connect((erro) => {
+//     if(erro){
+//         console.log("Erro Connection AWS DB", erro)
+//         return
+//     } 
+//     console.log("AWS DB Connection Successfull!")
+// })
 
-//Conection with AWS Database SERVER
-const awsDB = mysql.createConnection({
-    host: hostAWS,
-    user: userAWS,
-    password: passwordAWS,
-    database: "vertex"
-})
-
-awsDB.connect((erro) => {
-    if(erro){
-        console.log("Erro Connection AWS DB", erro)
-        return
-    } 
-    console.log("AWS DB Connection Successfull!")
-})
-
-export { localDB, awsDB }
+export { localDB }
