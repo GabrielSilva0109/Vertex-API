@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { localDB } from '../db'
 import bcrypt from 'bcrypt'
-import { generateToken  } from '../auth/auth'
+
 
 const generateRandomNumber = () => {
     const randomNumber = Math.floor(10000 + Math.random() * 90000);
@@ -133,9 +133,7 @@ export const loginUser = async (req: Request, res: Response) => {
                         const passwordMatch = bcrypt.compareSync(password, user.password)
 
                         if (passwordMatch) {
-                            //Gera um token JWT com o ID do usuario
-                            const token = generateToken(user.id)
-                            res.status(200).json({user, token})
+                            res.status(200).json(user)
                         } else {
                             res.status(401).json({ message: 'Credenciais inválidas pela senha' })
                         }
