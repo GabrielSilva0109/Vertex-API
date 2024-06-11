@@ -45,7 +45,7 @@ export const createUser = (req: Request, res: Response) => {
 
         // Se o usuário já existir, retorne um erro
         if (data.length > 0) {
-            return res.status(400).json({ error: 'O usuário já está cadastrado no sistema' })
+            return res.status(400).json({ error: 'O CPF já está cadastrado no sistema' })
         }
 
         const hashedPassword = bcrypt.hashSync(password, 10)
