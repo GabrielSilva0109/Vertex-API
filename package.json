@@ -15,6 +15,7 @@
     "@types/node": "^20.11.19",
     "aws-sdk": "^2.1592.0",
     "axios": "^1.6.7",
+    "backend": "file:",
     "bcrypt": "^5.1.1",
     "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
