@@ -1,6 +1,6 @@
 import express, { Router } from 'express'
 import multer from 'multer' 
-import { createUser, deleteUser, getUserById, getUsers, updateUser, loginUser, updateUserPicture } from '../controllers/UserController'
+import { createUser, deleteUser, getUserById, getUsers, updateUser, loginUser } from '../controllers/UserController'
 
 const router: Router = express.Router()
 
@@ -18,9 +18,9 @@ const upload = multer({ storage: storage })
 router.get('/users', getUsers)
 router.get('/users/:id', getUserById)
 router.post('/user', createUser)
-router.put('/userPicture/:id', upload.single('picture'), updateUserPicture)
 router.put('/user/:id', updateUser)
 router.delete('/user/:id', deleteUser)
 router.post('/login', loginUser)
+// router.put('/userPicture/:id', upload.single('picture'), updateUserPicture)
 
-export default router;
+export default router
